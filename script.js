@@ -1,123 +1,180 @@
-/* =========================
-MOBILE MENU
-========================= */
+/* ========================================
+   MOBILE MENU
+======================================== */
 
-const menuButton = document.getElementById("menuButton");
-const navMenu = document.getElementById("navMenu");
+const menuToggle =
+    document.getElementById("menuToggle");
 
-menuButton.addEventListener("click", function () {
-
-```
-navMenu.classList.toggle("active");
-```
-
-});
-
-/* =========================
-CLOSE MENU
-========================= */
-
-const navLinks = document.querySelectorAll("#navMenu a");
-
-navLinks.forEach(function (link) {
-
-```
-link.addEventListener("click", function () {
-
-    navMenu.classList.remove("active");
-
-});
-```
-
-});
-
-/* =========================
-BOOKING FORM
-========================= */
-
-const bookingForm = document.getElementById("bookingForm");
-
-bookingForm.addEventListener("submit", function (event) {
-
-```
-event.preventDefault();
-
-const name =
-    document.getElementById("name").value.trim();
-
-const phone =
-    document.getElementById("phone").value.trim();
-
-const vehicle =
-    document.getElementById("vehicle").value.trim();
-
-const service =
-    document.getElementById("service").value;
-
-const message =
-    document.getElementById("message").value.trim();
+const mainNav =
+    document.getElementById("mainNav");
 
 
-if (!name || !phone || !vehicle || !service) {
+if (menuToggle && mainNav) {
 
-    document.getElementById("formMessage").textContent =
-        "Please fill in all required fields.";
+    menuToggle.addEventListener("click", function () {
 
-    document.getElementById("formMessage").style.color =
-        "#ff5252";
+        mainNav.classList.toggle("open");
 
-    return;
+    });
+
+
+    document.querySelectorAll("#mainNav a")
+        .forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                mainNav.classList.remove("open");
+
+            });
+
+        });
+
 }
 
 
-/*
-    CHANGE THIS NUMBER.
+/* ========================================
+   WHATSAPP BOOKING FORM
+======================================== */
 
-    Example:
-    India +91 98765 43210
-
-    Use:
-    919876543210
-*/
-
-const whatsappNumber = "919876543210";
+const bookingForm =
+    document.getElementById("bookingForm");
 
 
-const text =
-    "Hello GlowRestore!%0A%0A" +
+if (bookingForm) {
 
-    "I want to book a headlight restoration service.%0A%0A" +
+    bookingForm.addEventListener(
+        "submit",
+        function (event) {
 
-    "Name: " + encodeURIComponent(name) + "%0A" +
-
-    "Phone: " + encodeURIComponent(phone) + "%0A" +
-
-    "Vehicle: " + encodeURIComponent(vehicle) + "%0A" +
-
-    "Service: " + encodeURIComponent(service) + "%0A" +
-
-    "Message: " + encodeURIComponent(message);
+            event.preventDefault();
 
 
-const whatsappURL =
-    "https://wa.me/" +
-    whatsappNumber +
-    "?text=" +
-    text;
+            const name =
+                document.getElementById("name")
+                    .value.trim();
 
 
-document.getElementById("formMessage").textContent =
-    "Opening WhatsApp...";
-
-document.getElementById("formMessage").style.color =
-    "#ffc107";
+            const phone =
+                document.getElementById("phone")
+                    .value.trim();
 
 
-setTimeout(function () {
+            const vehicle =
+                document.getElementById("vehicle")
+                    .value.trim();
 
-    window.open(whatsappURL, "_blank");
 
-}, 500);
-```
+            const service =
+                document.getElementById("service")
+                    .value;
 
-});
+
+            const message =
+                document.getElementById("message")
+                    .value.trim();
+
+
+            const formMessage =
+                document.getElementById("formMessage");
+
+
+            if (
+                !name ||
+                !phone ||
+                !vehicle ||
+                !service
+            ) {
+
+                formMessage.textContent =
+                    "Please complete all required fields.";
+
+                return;
+
+            }
+
+
+            /*
+                =================================
+                CHANGE THIS NUMBER
+                =================================
+
+                Example:
+
+                India:
+                919876543210
+
+                Do NOT use:
+                +91
+                spaces
+                brackets
+                hyphens
+            */
+
+            const whatsappNumber =
+                "919876543210";
+
+
+            const whatsappText =
+
+                "Hello W Headlight Restoration!" +
+
+                "\n\n" +
+
+                "I would like to book a service." +
+
+                "\n\n" +
+
+                "Name: " +
+                name +
+
+                "\n" +
+
+                "Phone: " +
+                phone +
+
+                "\n" +
+
+                "Vehicle: " +
+                vehicle +
+
+                "\n" +
+
+                "Service: " +
+                service +
+
+                "\n" +
+
+                "Message: " +
+                (
+                    message ||
+                    "No additional message"
+                );
+
+
+            const whatsappURL =
+
+                "https://wa.me/" +
+
+                whatsappNumber +
+
+                "?text=" +
+
+                encodeURIComponent(
+                    whatsappText
+                );
+
+
+            formMessage.textContent =
+                "Opening WhatsApp...";
+
+
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
+
+        }
+
+    );
+
+}
