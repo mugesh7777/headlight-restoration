@@ -1,5 +1,5 @@
 /* =========================
-   MOBILE MENU
+MOBILE MENU
 ========================= */
 
 const menuButton = document.getElementById("menuButton");
@@ -7,137 +7,117 @@ const navMenu = document.getElementById("navMenu");
 
 menuButton.addEventListener("click", function () {
 
-    navMenu.classList.toggle("active");
+```
+navMenu.classList.toggle("active");
+```
 
 });
 
-
 /* =========================
-   CLOSE MOBILE MENU
+CLOSE MENU
 ========================= */
 
 const navLinks = document.querySelectorAll("#navMenu a");
 
 navLinks.forEach(function (link) {
 
-    link.addEventListener("click", function () {
+```
+link.addEventListener("click", function () {
 
-        navMenu.classList.remove("active");
+    navMenu.classList.remove("active");
 
-    });
+});
+```
 
 });
 
-
 /* =========================
-   BOOKING FORM
+BOOKING FORM
 ========================= */
 
 const bookingForm = document.getElementById("bookingForm");
-const formMessage = document.getElementById("formMessage");
 
 bookingForm.addEventListener("submit", function (event) {
 
-    event.preventDefault();
+```
+event.preventDefault();
 
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const vehicle = document.getElementById("vehicle").value.trim();
-    const service = document.getElementById("service").value;
-    const message = document.getElementById("message").value.trim();
+const name =
+    document.getElementById("name").value.trim();
 
+const phone =
+    document.getElementById("phone").value.trim();
 
-    if (name === "" || phone === "" || vehicle === "" || service === "") {
+const vehicle =
+    document.getElementById("vehicle").value.trim();
 
-        formMessage.textContent =
-            "Please fill in all required fields.";
+const service =
+    document.getElementById("service").value;
 
-        formMessage.style.color = "#ff6b6b";
-
-        return;
-    }
-
-
-    /*
-       CHANGE THIS NUMBER TO YOUR BUSINESS
-       WHATSAPP NUMBER.
-
-       Country code:
-       India = 91
-
-       Example:
-       919876543210
-    */
-
-    const whatsappNumber = "919876543210";
+const message =
+    document.getElementById("message").value.trim();
 
 
-    const whatsappMessage =
-        `Hello GlowRestore!%0A%0A` +
-        `I would like to book a headlight restoration service.%0A%0A` +
-        `Name: ${name}%0A` +
-        `Phone: ${phone}%0A` +
-        `Vehicle: ${vehicle}%0A` +
-        `Service: ${service}%0A` +
-        `Message: ${message}`;
+if (!name || !phone || !vehicle || !service) {
+
+    document.getElementById("formMessage").textContent =
+        "Please fill in all required fields.";
+
+    document.getElementById("formMessage").style.color =
+        "#ff5252";
+
+    return;
+}
 
 
-    const whatsappURL =
-        `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+/*
+    CHANGE THIS NUMBER.
+
+    Example:
+    India +91 98765 43210
+
+    Use:
+    919876543210
+*/
+
+const whatsappNumber = "919876543210";
 
 
-    formMessage.textContent =
-        "Opening WhatsApp...";
+const text =
+    "Hello GlowRestore!%0A%0A" +
 
-    formMessage.style.color = "#f5b942";
+    "I want to book a headlight restoration service.%0A%0A" +
 
+    "Name: " + encodeURIComponent(name) + "%0A" +
 
-    setTimeout(function () {
+    "Phone: " + encodeURIComponent(phone) + "%0A" +
 
-        window.open(whatsappURL, "_blank");
+    "Vehicle: " + encodeURIComponent(vehicle) + "%0A" +
 
-    }, 700);
+    "Service: " + encodeURIComponent(service) + "%0A" +
 
-
-});
-
-
-/* =========================
-   SCROLL ANIMATION
-========================= */
-
-const animatedElements = document.querySelectorAll(
-    ".service-card, .gallery-card, .process-step, .about-content, .booking-form"
-);
+    "Message: " + encodeURIComponent(message);
 
 
-const observer = new IntersectionObserver(
-
-    function (entries) {
-
-        entries.forEach(function (entry) {
-
-            if (entry.isIntersecting) {
-
-                entry.target.classList.add("show");
-
-            }
-
-        });
-
-    },
-
-    {
-        threshold: 0.15
-    }
-
-);
+const whatsappURL =
+    "https://wa.me/" +
+    whatsappNumber +
+    "?text=" +
+    text;
 
 
-animatedElements.forEach(function (element) {
+document.getElementById("formMessage").textContent =
+    "Opening WhatsApp...";
 
-    element.classList.add("animate");
+document.getElementById("formMessage").style.color =
+    "#ffc107";
 
-    observer.observe(element);
+
+setTimeout(function () {
+
+    window.open(whatsappURL, "_blank");
+
+}, 500);
+```
 
 });
