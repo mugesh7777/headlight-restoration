@@ -13,7 +13,7 @@
     --white: #f7f7f5;
     --gray: #979da3;
     --line: #292e33;
-    --max-width: 1300px; /* Slightly wider for the massive text */
+    --max-width: 1200px; /* Brought back slightly for better reading width */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -50,7 +50,7 @@ button, input, textarea, select { font: inherit; }
 .menu-toggle span { width: 18px; height: 2px; background: white; }
 
 /* =========================
-   HERO (MASSIVE TEXT & INTERACTIVE BG)
+   HERO 
 ========================= */
 .hero {
     min-height: 100vh;
@@ -66,7 +66,6 @@ button, input, textarea, select { font: inherit; }
     inset: 0;
     background: url("https://images.unsplash.com/photo-1775637483814-582dc0572074?auto=format&fit=crop&fm=jpg&q=85&w=2200") center/cover no-repeat;
     transform: scale(1.15); 
-    /* Smooth transition for mouse movement */
     transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform;
 }
@@ -74,8 +73,7 @@ button, input, textarea, select { font: inherit; }
 .hero-overlay {
     position: absolute;
     inset: 0;
-    /* Fades from pure black on the left to transparent on the right so text pops */
-    background: linear-gradient(90deg, rgba(5,6,7,0.95) 0%, rgba(5,6,7,0.7) 40%, transparent 100%);
+    background: linear-gradient(90deg, rgba(5,6,7,0.98) 0%, rgba(5,6,7,0.7) 45%, transparent 100%);
 }
 
 .hero-content {
@@ -85,7 +83,7 @@ button, input, textarea, select { font: inherit; }
 }
 
 .hero-text-wrapper {
-    width: 100%; /* Allows text to span the full width of the container */
+    width: 100%; 
 }
 
 .eyebrow {
@@ -94,15 +92,16 @@ button, input, textarea, select { font: inherit; }
 }
 .eyebrow span { width: 25px; height: 2px; background: var(--gold); }
 
-/* The Massive Text taking over the screen */
+/* The reduced two-line text */
 .hero h1 {
     font-family: "Barlow Condensed", Impact, sans-serif;
-    font-size: clamp(80px, 14vw, 240px); /* Massively scales up on large screens */
-    line-height: 0.85;
+    font-size: clamp(55px, 8vw, 110px); /* Reduced maximum size significantly to 110px */
+    line-height: 0.95;
     text-transform: uppercase;
-    letter-spacing: -2px;
-    margin-bottom: 40px;
-    text-shadow: 0 10px 40px rgba(0,0,0,0.5); /* Helps it stand out off the image */
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+    text-shadow: 0 10px 40px rgba(0,0,0,0.5); 
+    white-space: nowrap; /* Forces it to strictly obey the <br> tag for two lines */
 }
 .hero h1 em { color: var(--gold); font-style: normal; }
 
@@ -126,7 +125,7 @@ button, input, textarea, select { font: inherit; }
 .trust-row small { color: #7d8388; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
 .trust-row .line { width: 1px; height: 34px; background: #34393d; }
 
-/* Rest of the CSS remains identical to the previous version */
+/* Rest of the CSS remains identical */
 .section-header { margin-bottom: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: end; }
 .section-header.center { display: block; text-align: center; }
 .section-header h2, .about-content h2, .booking-info h2, .final-cta h2 { font-family: "Barlow Condensed", Impact, sans-serif; text-transform: uppercase; font-size: 58px; line-height: .92; }
@@ -218,7 +217,7 @@ footer { background: #050607; padding-top: 55px; }
     .header-cta { display: none; }
     .menu-toggle { display: flex; }
     
-    .hero h1 { font-size: clamp(60px, 15vw, 150px); margin-bottom: 25px; }
+    .hero h1 { font-size: clamp(45px, 10vw, 80px); margin-bottom: 25px; white-space: normal; }
     .hero-overlay { background: linear-gradient(90deg, rgba(5,6,7,0.98) 0%, rgba(5,6,7,0.85) 60%, transparent 100%); }
 
     .service-grid, .about-grid, .booking-grid { grid-template-columns: 1fr; }
@@ -235,7 +234,7 @@ footer { background: #050607; padding-top: 55px; }
 @media(max-width:560px) {
     .section { padding: 75px 0; }
     .hero { min-height: 80vh; }
-    .hero h1 { font-size: clamp(50px, 15vw, 100px); margin-bottom: 15px; line-height: 0.9; }
+    .hero h1 { font-size: clamp(40px, 10vw, 60px); margin-bottom: 15px; line-height: 1.1; white-space: normal; }
     .hero-text { font-size: 14px; }
     .trust-row { gap: 18px; flex-wrap: wrap; margin-top: 45px; }
     .trust-row .line { display: none; }
