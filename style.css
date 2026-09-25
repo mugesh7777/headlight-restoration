@@ -13,7 +13,7 @@
     --white: #f7f7f5;
     --gray: #979da3;
     --line: #292e33;
-    --max-width: 1200px; /* Brought back slightly for better reading width */
+    --max-width: 1200px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -92,16 +92,15 @@ button, input, textarea, select { font: inherit; }
 }
 .eyebrow span { width: 25px; height: 2px; background: var(--gold); }
 
-/* The reduced two-line text */
 .hero h1 {
     font-family: "Barlow Condensed", Impact, sans-serif;
-    font-size: clamp(55px, 8vw, 110px); /* Reduced maximum size significantly to 110px */
+    font-size: clamp(55px, 8vw, 110px); 
     line-height: 0.95;
     text-transform: uppercase;
     letter-spacing: -1px;
     margin-bottom: 30px;
     text-shadow: 0 10px 40px rgba(0,0,0,0.5); 
-    white-space: nowrap; /* Forces it to strictly obey the <br> tag for two lines */
+    white-space: nowrap; 
 }
 .hero h1 em { color: var(--gold); font-style: normal; }
 
@@ -125,13 +124,18 @@ button, input, textarea, select { font: inherit; }
 .trust-row small { color: #7d8388; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
 .trust-row .line { width: 1px; height: 34px; background: #34393d; }
 
-/* Rest of the CSS remains identical */
+/* =========================
+   SECTION HEADER
+========================= */
 .section-header { margin-bottom: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: end; }
 .section-header.center { display: block; text-align: center; }
 .section-header h2, .about-content h2, .booking-info h2, .final-cta h2 { font-family: "Barlow Condensed", Impact, sans-serif; text-transform: uppercase; font-size: 58px; line-height: .92; }
 .section-header h2 em, .about-content h2 em, .booking-info h2 em, .final-cta h2 em { color: var(--gold); font-style: normal; }
 .section-header > p { color: #858b90; font-size: 13px; max-width: 500px; }
 
+/* =========================
+   SERVICES
+========================= */
 .services { background: #0d0f10; }
 .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .service-card { position: relative; min-height: 300px; padding: 31px; display: flex; flex-direction: column; background: linear-gradient(180deg, #171a1d, #111315); border: 1px solid var(--line); border-radius: 12px; transition: .3s; }
@@ -145,6 +149,9 @@ button, input, textarea, select { font: inherit; }
 .service-bottom strong { color: var(--gold); font-size: 13px; }
 .service-bottom a { font-size: 12px; }
 
+/* =========================
+   ABOUT
+========================= */
 .about-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 75px; align-items: center; }
 .about-image { position: relative; height: 540px; overflow: hidden; border-radius: 14px; border: 1px solid var(--line); }
 .about-image img { width: 100%; height: 100%; object-fit: cover; }
@@ -158,6 +165,9 @@ button, input, textarea, select { font: inherit; }
 .features span { color: var(--gold); margin-right: 9px; }
 .text-link { color: var(--gold); font-size: 12px; font-weight: 800; }
 
+/* =========================
+   WORK
+========================= */
 .work { background: #0d0f10; }
 .work .section-header { display: block; text-align: center; }
 .work .section-header > p { margin: 18px auto; }
@@ -171,6 +181,9 @@ button, input, textarea, select { font: inherit; }
 .work-card small { display: block; color: var(--gold); font-size: 8px; letter-spacing: 2px; font-weight: 800; }
 .work-card strong { display: block; font-size: 13px; margin-top: 5px; }
 
+/* =========================
+   PROCESS
+========================= */
 .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
 .process-grid > div { padding: 28px 22px; border-right: 1px solid var(--line); }
 .process-grid > div:last-child { border-right: 0; }
@@ -178,8 +191,62 @@ button, input, textarea, select { font: inherit; }
 .process-grid h3 { margin: 15px 0 7px; font-size: 19px; }
 .process-grid p { color: #777e83; font-size: 12px; }
 
-.booking { background: #0b0d0e; }
-.booking-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 65px; }
+/* =========================
+   BOOKING
+========================= */
+.booking { 
+    position: relative;
+    background: #0b0d0e; 
+    overflow: hidden; 
+}
+
+/* BMW Background that Zooms */
+.booking-bg {
+    position: absolute;
+    inset: -10%; /* Negative inset so zooming doesn't show blank edges */
+    background: url("https://images.unsplash.com/photo-1555353540-64fd1b623758?auto=format&fit=crop&q=80&w=2000") center/cover no-repeat;
+    z-index: 0;
+    animation: zoomBmw 25s infinite alternate ease-in-out;
+}
+
+/* Pulsing Dim/Bright Lights Layer */
+.booking-lights {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    /* Creates a soft radial glow mimicking headlight throw */
+    background: radial-gradient(circle at 50% 60%, rgba(255, 240, 200, 0.4), transparent 65%);
+    mix-blend-mode: screen;
+    animation: pulseLights 3.5s infinite alternate ease-in-out;
+}
+
+/* Dark Overlay to keep text readable */
+.booking-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(11, 13, 14, 0.98) 0%, rgba(11, 13, 14, 0.85) 50%, rgba(11, 13, 14, 0.6) 100%);
+}
+
+.booking-grid { 
+    position: relative; 
+    z-index: 3; /* Brings the form content strictly above the zooming background */
+    display: grid; 
+    grid-template-columns: .9fr 1.1fr; 
+    gap: 65px; 
+}
+
+/* Keyframes for BMW animations */
+@keyframes zoomBmw {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
+}
+
+@keyframes pulseLights {
+    0% { opacity: 0.1; filter: brightness(0.8); }
+    100% { opacity: 1; filter: brightness(1.6); }
+}
+
 .booking-info > p { color: #8a9095; max-width: 500px; font-size: 14px; }
 .contact-list { margin-top: 34px; }
 .contact-list > div { display: flex; align-items: center; gap: 14px; margin: 20px 0; }
@@ -187,7 +254,10 @@ button, input, textarea, select { font: inherit; }
 .contact-list small { display: block; color: #777d82; font-size: 8px; letter-spacing: 2px; }
 .contact-list strong { font-size: 13px; }
 
-.booking-form { background: #151719; border: 1px solid #2a2f33; border-radius: 12px; padding: 32px; }
+/* =========================
+   FORM
+========================= */
+.booking-form { background: #151719; border: 1px solid #2a2f33; border-radius: 12px; padding: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
 .booking-form h3 { font-size: 24px; }
 .form-subtitle { color: #73797d; font-size: 11px; margin-top: 4px; margin-bottom: 18px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -199,10 +269,16 @@ button, input, textarea, select { font: inherit; }
 .submit-button:hover { background: #ffd34f; }
 .form-message { color: var(--gold); text-align: center; font-size: 11px; min-height: 18px; margin-top: 10px; }
 
+/* =========================
+   FINAL CTA
+========================= */
 .final-cta { padding: 75px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: radial-gradient(circle at 75% 45%, rgba(255,194,26,.14), transparent 28%); }
 .final-cta .container { display: flex; justify-content: space-between; align-items: center; gap: 30px; }
 .final-cta h2 { font-size: 58px; }
 
+/* =========================
+   FOOTER
+========================= */
 footer { background: #050607; padding-top: 55px; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; padding-bottom: 45px; }
 .footer-grid h4 { font-size: 13px; margin-bottom: 13px; }
@@ -211,6 +287,9 @@ footer { background: #050607; padding-top: 55px; }
 .footer-description { max-width: 320px; margin-top: 18px !important; }
 .copyright { text-align: center; border-top: 1px solid #181b1e; padding: 18px; color: #51575c; font-size: 10px; }
 
+/* =========================
+   TABLET
+========================= */
 @media(max-width:900px) {
     .main-nav { display: none; position: absolute; top: 78px; left: 0; right: 0; background: #08090a; padding: 22px; flex-direction: column; gap: 18px; border-bottom: 1px solid var(--line); }
     .main-nav.open { display: flex; }
@@ -231,6 +310,9 @@ footer { background: #050607; padding-top: 55px; }
     .section-header { grid-template-columns: 1fr; }
 }
 
+/* =========================
+   MOBILE
+========================= */
 @media(max-width:560px) {
     .section { padding: 75px 0; }
     .hero { min-height: 80vh; }
