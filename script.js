@@ -6,22 +6,13 @@ const heroPhoto = document.getElementById("heroPhoto");
 
 if (heroSection && heroPhoto) {
     heroSection.addEventListener("mousemove", (e) => {
-        // Only run the interactive effect on screens larger than mobile devices
         if (window.innerWidth > 900) {
-            // Find where the mouse is horizontally as a decimal between 0 and 1
             const mouseX = e.clientX / window.innerWidth;
-            
-            // Map the decimal so the center of the screen is 0
-            // Moving mouse left gives a negative value, moving right gives a positive value
-            // We multiply by -10 to limit the movement to 5% left or right, inverting it so it feels natural
             const movePercentage = (mouseX - 0.5) * -10; 
-            
-            // Apply the transform to pan the image dynamically
             heroPhoto.style.transform = `scale(1.15) translateX(${movePercentage}%)`;
         }
     });
 
-    // Reset the image to perfectly centered when the mouse leaves the hero section
     heroSection.addEventListener("mouseleave", () => {
         if (window.innerWidth > 900) {
             heroPhoto.style.transform = `scale(1.15) translateX(0%)`;
@@ -64,18 +55,13 @@ if (bookingForm) {
         const formMessage = document.getElementById("formMessage");
 
         if (!name || !phone || !vehicle || !service) {
+            formMessage.style.color = "#ffc21a";
             formMessage.textContent = "Please complete all required fields.";
             return;
         }
 
-        /*
-            =================================
-            CHANGE THIS NUMBER
-            =================================
-            Example:
-            India: 919876543210
-        */
-        const whatsappNumber = "919876543210";
+        // YOUR WHATSAPP NUMBER
+        const whatsappNumber = "917092877898";
 
         const whatsappText = 
             "Hello W Headlight Restoration!\n\n" +
@@ -88,7 +74,19 @@ if (bookingForm) {
 
         const whatsappURL = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(whatsappText);
 
-        formMessage.textContent = "Opening WhatsApp...";
+        // Open WhatsApp in a new tab to send the details
         window.open(whatsappURL, "_blank");
+
+        // Show success message to the client on the website
+        formMessage.style.color = "#4CAF50"; // Green color for success
+        formMessage.textContent = "Booking successfully submitted!";
+
+        // Reset the form fields after submission
+        bookingForm.reset();
+        
+        // Hide the success message after 5 seconds
+        setTimeout(() => {
+            formMessage.textContent = "";
+        }, 5000);
     });
 }
