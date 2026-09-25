@@ -195,63 +195,22 @@ button, input, textarea, select { font: inherit; }
    BOOKING (BMW FULL SCREEN)
 ========================= */
 .booking { 
-    position: relative;
-    background: #0b0d0e; 
-    overflow: hidden; 
-    min-height: 100vh; /* Forces section to cover the entire page */
-    display: flex;
-    align-items: center;
-    padding: 120px 0; 
+    position: relative; background: #0b0d0e; overflow: hidden; 
+    min-height: 100vh; display: flex; align-items: center; padding: 120px 0; 
 }
-
-/* Front view BMW background that zooms and pulses */
 .booking-bg {
-    position: absolute;
-    inset: -5%; /* Room for zooming in */
+    position: absolute; inset: -5%; z-index: 0;
     background: url("https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=2500") center/cover no-repeat;
-    z-index: 0;
-    /* Combines the zoom and the headlight dim/bright animation */
     animation: zoomBmw 20s infinite alternate ease-in-out, pulseHeadlights 4s infinite alternate ease-in-out;
 }
+.booking-overlay { position: absolute; inset: 0; z-index: 1; background: radial-gradient(circle at center, rgba(11, 13, 14, 0.1) 0%, rgba(11, 13, 14, 0.85) 100%); }
+.booking-grid { position: relative; z-index: 2; display: grid; grid-template-columns: .9fr 1.1fr; gap: 65px; align-items: center; }
 
-/* Very subtle radial overlay so the car in the middle stays visible */
-.booking-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: radial-gradient(circle at center, rgba(11, 13, 14, 0.1) 0%, rgba(11, 13, 14, 0.85) 100%);
-}
-
-.booking-grid { 
-    position: relative; 
-    z-index: 2; 
-    display: grid; 
-    grid-template-columns: .9fr 1.1fr; 
-    gap: 65px; 
-    align-items: center;
-}
-
-/* Frosted glass effect for info block so car can be seen through it */
-.booking-info {
-    background: rgba(11, 13, 14, 0.4);
-    backdrop-filter: blur(8px);
-    padding: 40px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,194,26,0.15);
-}
+.booking-info { background: rgba(11, 13, 14, 0.4); backdrop-filter: blur(8px); padding: 40px; border-radius: 12px; border: 1px solid rgba(255,194,26,0.15); }
 .booking-info > p { color: #8a9095; max-width: 500px; font-size: 14px; margin-top: 15px; }
 
-/* Keyframes for BMW animations */
-@keyframes zoomBmw {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.12); }
-}
-
-/* Simulates the headlights slowly turning on and off by manipulating image brightness */
-@keyframes pulseHeadlights {
-    0% { filter: brightness(0.2) contrast(1.2); }
-    100% { filter: brightness(1.2) contrast(1.1); }
-}
+@keyframes zoomBmw { 0% { transform: scale(1); } 100% { transform: scale(1.12); } }
+@keyframes pulseHeadlights { 0% { filter: brightness(0.2) contrast(1.2); } 100% { filter: brightness(1.2) contrast(1.1); } }
 
 .contact-list { margin-top: 34px; }
 .contact-list > div { display: flex; align-items: center; gap: 14px; margin: 20px 0; }
@@ -259,15 +218,7 @@ button, input, textarea, select { font: inherit; }
 .contact-list small { display: block; color: #777d82; font-size: 8px; letter-spacing: 2px; }
 .contact-list strong { font-size: 13px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
 
-/* Frosted glass effect for form so it doesn't completely block the background */
-.booking-form { 
-    background: rgba(21, 23, 25, 0.5); 
-    backdrop-filter: blur(12px); 
-    border: 1px solid rgba(255,255,255,0.08); 
-    border-radius: 12px; 
-    padding: 40px; 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6); 
-}
+.booking-form { background: rgba(21, 23, 25, 0.5); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
 .booking-form h3 { font-size: 24px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
 .form-subtitle { color: #c1c5c8; font-size: 11px; margin-top: 4px; margin-bottom: 18px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -297,6 +248,7 @@ footer { background: #050607; padding-top: 55px; }
 .footer-description { max-width: 320px; margin-top: 18px !important; }
 .copyright { text-align: center; border-top: 1px solid #181b1e; padding: 18px; color: #51575c; font-size: 10px; }
 
+
 /* =========================
    TABLET
 ========================= */
@@ -309,6 +261,7 @@ footer { background: #050607; padding-top: 55px; }
     .hero h1 { font-size: clamp(45px, 10vw, 80px); margin-bottom: 25px; white-space: normal; }
     .hero-overlay { background: linear-gradient(90deg, rgba(5,6,7,0.98) 0%, rgba(5,6,7,0.85) 60%, transparent 100%); }
 
+    /* For tablet, standard vertical stacking */
     .service-grid, .about-grid, .booking-grid { grid-template-columns: 1fr; }
     .about-grid { gap: 40px; }
     .work-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 300px 230px 230px; }
@@ -321,7 +274,7 @@ footer { background: #050607; padding-top: 55px; }
 }
 
 /* =========================
-   MOBILE
+   MOBILE (HORIZONTAL SCROLLING CAROUSELS ADDED)
 ========================= */
 @media(max-width:560px) {
     .section { padding: 75px 0; }
@@ -333,11 +286,51 @@ footer { background: #050607; padding-top: 55px; }
     .section-header h2, .about-content h2, .booking-info h2, .final-cta h2 { font-size: 45px; }
     .form-row { grid-template-columns: 1fr; }
     .about-image { height: 400px; }
-    .work-grid { grid-template-columns: 1fr; grid-template-rows: 300px 230px 230px 230px; }
-    .work-card.large { grid-column: auto; }
-    .process-grid { grid-template-columns: 1fr; }
-    .process-grid > div { border-right: 0; border-top: 1px solid var(--line); }
-    .process-grid > div:first-child { border-top: 0; }
     .final-cta .container { align-items: flex-start; flex-direction: column; }
-    .footer-grid { grid-template-columns: 1fr; }
+    
+    /* Keep these sections stacked normally */
+    .about-grid, .booking-grid, .footer-grid { grid-template-columns: 1fr; }
+
+    /* =========================================
+       Make Grid Components Swipe Horizontally 
+    ========================================= */
+    .service-grid, .work-grid, .process-grid { 
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        padding-bottom: 15px; /* Adds space so scrollbar doesn't clip content */
+        
+        /* Hides native scrollbar for cleaner look */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    /* Chrome/Safari Hide Scrollbar */
+    .service-grid::-webkit-scrollbar,
+    .work-grid::-webkit-scrollbar,
+    .process-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Size cards to fit screen while scrolling */
+    .service-card, .work-card, .process-grid > div {
+        flex: 0 0 85%; /* Shows 85% of one card, giving a peek at the next one! */
+        scroll-snap-align: center;
+    }
+
+    /* Fix height for swiping Work Cards */
+    .work-card, .work-card.large {
+        grid-column: auto;
+        height: 350px;
+    }
+
+    /* Make Process steps look like swiping cards */
+    .process-grid > div { 
+        border: 1px solid var(--line) !important;
+        border-radius: 12px;
+        background: linear-gradient(180deg, #171a1d, #111315);
+    }
 }
