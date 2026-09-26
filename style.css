@@ -253,15 +253,42 @@ footer { background: #050607; padding-top: 55px; }
    TABLET
 ========================= */
 @media(max-width:900px) {
-    .main-nav { display: none; position: absolute; top: 78px; left: 0; right: 0; background: #08090a; padding: 22px; flex-direction: column; gap: 18px; border-bottom: 1px solid var(--line); }
-    .main-nav.open { display: flex; }
+    /* =========================================
+       Options (Navigation Menu) Slide Animation
+    ========================================= */
+    .main-nav { 
+        display: flex; 
+        position: fixed; 
+        top: 78px; 
+        left: -100%; /* Menu is hidden off the screen to the left */
+        width: 100%; 
+        height: calc(100vh - 78px);
+        background: #08090a; 
+        padding: 40px; 
+        flex-direction: column; 
+        gap: 25px; 
+        border-bottom: 1px solid var(--line); 
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth movement from left to right */
+        z-index: 999;
+    }
+    
+    .main-nav.open { 
+        left: 0; /* Menu options slide into view */
+    }
+    
+    /* Make the links larger on mobile to look better */
+    .main-nav a { 
+        font-size: 20px; 
+        font-weight: 600;
+    }
+
     .header-cta { display: none; }
     .menu-toggle { display: flex; }
     
     .hero h1 { font-size: clamp(45px, 10vw, 80px); margin-bottom: 25px; white-space: normal; }
     .hero-overlay { background: linear-gradient(90deg, rgba(5,6,7,0.98) 0%, rgba(5,6,7,0.85) 60%, transparent 100%); }
 
-    /* For tablet, standard vertical stacking */
+    /* Standard vertical stacking for tablet */
     .service-grid, .about-grid, .booking-grid { grid-template-columns: 1fr; }
     .about-grid { gap: 40px; }
     .work-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 300px 230px 230px; }
@@ -274,7 +301,7 @@ footer { background: #050607; padding-top: 55px; }
 }
 
 /* =========================
-   MOBILE (HORIZONTAL SCROLLING CAROUSELS ADDED)
+   MOBILE
 ========================= */
 @media(max-width:560px) {
     .section { padding: 75px 0; }
@@ -291,9 +318,7 @@ footer { background: #050607; padding-top: 55px; }
     /* Keep these sections stacked normally */
     .about-grid, .booking-grid, .footer-grid { grid-template-columns: 1fr; }
 
-    /* =========================================
-       Make Grid Components Swipe Horizontally 
-    ========================================= */
+    /* Horizontal scroll for grid components */
     .service-grid, .work-grid, .process-grid { 
         display: flex;
         flex-direction: row;
@@ -301,33 +326,29 @@ footer { background: #050607; padding-top: 55px; }
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         gap: 16px;
-        padding-bottom: 15px; /* Adds space so scrollbar doesn't clip content */
-        
-        /* Hides native scrollbar for cleaner look */
+        padding-bottom: 15px; 
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
     
-    /* Chrome/Safari Hide Scrollbar */
+    /* Hide Scrollbar */
     .service-grid::-webkit-scrollbar,
     .work-grid::-webkit-scrollbar,
     .process-grid::-webkit-scrollbar {
         display: none;
     }
 
-    /* Size cards to fit screen while scrolling */
+    /* Size cards for swiping */
     .service-card, .work-card, .process-grid > div {
-        flex: 0 0 85%; /* Shows 85% of one card, giving a peek at the next one! */
+        flex: 0 0 85%; 
         scroll-snap-align: center;
     }
 
-    /* Fix height for swiping Work Cards */
     .work-card, .work-card.large {
         grid-column: auto;
         height: 350px;
     }
 
-    /* Make Process steps look like swiping cards */
     .process-grid > div { 
         border: 1px solid var(--line) !important;
         border-radius: 12px;
