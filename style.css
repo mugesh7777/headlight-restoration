@@ -25,9 +25,6 @@ button, input, textarea, select { font: inherit; }
 .container { width: min(92%, var(--max-width)); margin: auto; }
 .section { padding: 110px 0; }
 
-/* Because Services is now first, we add top padding to account for the fixed header */
-.first-section { padding-top: 150px; } 
-
 /* =========================
    HEADER
 ========================= */
@@ -53,7 +50,7 @@ button, input, textarea, select { font: inherit; }
 .menu-toggle span { width: 18px; height: 2px; background: white; }
 
 /* =========================
-   HERO (NOW SECOND PAGE)
+   HERO 
 ========================= */
 .hero {
     min-height: 100vh;
@@ -271,6 +268,7 @@ footer { background: #050607; padding-top: 55px; }
     .header-cta { display: none; }
     .menu-toggle { display: flex; }
     
+    .hero h1 { font-size: clamp(45px, 10vw, 80px); margin-bottom: 25px; white-space: normal; }
     .hero-overlay { background: linear-gradient(90deg, rgba(5,6,7,0.98) 0%, rgba(5,6,7,0.85) 60%, transparent 100%); }
 
     /* Standard vertical stacking for tablet */
@@ -290,66 +288,14 @@ footer { background: #050607; padding-top: 55px; }
 ========================= */
 @media(max-width:560px) {
     .section { padding: 75px 0; }
+    .hero { min-height: 80vh; }
     
-    /* 
-       HERO MOBILE PERFECT CENTERING
-       Ensures no shifting to the right, equal left/right spacing, 
-       and perfectly centered text vertically and horizontally.
-    */
-    .hero { 
-        min-height: 100vh;
-        display: flex;
-        align-items: center; /* Vertical centering */
-        justify-content: center; /* Horizontal centering */
-    }
+    /* Adds a nice gap to the right side so it isn't hugging the edge */
+    .hero-text-wrapper { padding-right: 25px; }
     
-    .hero-content {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .hero-text-wrapper {
-        text-align: center;
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 0; /* Reset padding to let container handle bounds */
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Horizontally centers all children */
-    }
-    
-    .eyebrow { justify-content: center; width: 100%; }
-    
-    .hero h1 { 
-        text-align: center;
-        font-size: clamp(40px, 10vw, 60px); 
-        line-height: 1.1; 
-        white-space: normal;
-        margin: 0 auto 20px auto; 
-        width: 100%;
-    }
-    
-    .hero-text { 
-        text-align: center;
-        font-size: 14px;
-        margin: 0 auto 30px auto;
-        max-width: 100%;
-    }
-    
-    .hero-buttons { 
-        justify-content: center; 
-        width: 100%;
-    }
-    
-    .trust-row { 
-        justify-content: center; 
-        gap: 18px; 
-        flex-wrap: wrap; 
-        margin: 45px auto 0 auto; 
-        width: 100%;
-    }
-    
+    .hero h1 { font-size: clamp(40px, 10vw, 60px); margin-bottom: 15px; line-height: 1.1; white-space: normal; }
+    .hero-text { font-size: 14px; }
+    .trust-row { gap: 18px; flex-wrap: wrap; margin-top: 45px; }
     .trust-row .line { display: none; }
     .section-header h2, .about-content h2, .booking-info h2, .final-cta h2 { font-size: 45px; }
     .form-row { grid-template-columns: 1fr; }
@@ -393,20 +339,17 @@ footer { background: #050607; padding-top: 55px; }
         background: linear-gradient(180deg, #171a1d, #111315);
     }
     
-    /* 
-       FOOTER MOBILE ALIGNMENT FIXES 
-       Places Contact on the Left and Navigate on the Right with a gap.
-    */
+    /* Mobile Footer adjustments: Contact on Left, Navigate on Right */
     .footer-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr; /* 2 columns */
-        gap: 25px; /* Decent gap between Contact and Navigate */
+        grid-template-columns: 1fr 1fr;
+        gap: 35px;
     }
     
-    /* Brand Logo / Description takes the full width at the very top */
+    /* Brand block takes the full width at the very top */
     .footer-grid > div:nth-child(1) {
         grid-column: 1 / 3;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
     
     /* Navigate moves to the right column */
