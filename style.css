@@ -25,6 +25,9 @@ button, input, textarea, select { font: inherit; }
 .container { width: min(92%, var(--max-width)); margin: auto; }
 .section { padding: 110px 0; }
 
+/* Because Services is now first, we add top padding to account for the fixed header */
+.first-section { padding-top: 150px; } 
+
 /* =========================
    HEADER
 ========================= */
@@ -50,7 +53,7 @@ button, input, textarea, select { font: inherit; }
 .menu-toggle span { width: 18px; height: 2px; background: white; }
 
 /* =========================
-   HERO 
+   HERO (NOW SECOND PAGE)
 ========================= */
 .hero {
     min-height: 100vh;
@@ -287,37 +290,64 @@ footer { background: #050607; padding-top: 55px; }
 ========================= */
 @media(max-width:560px) {
     .section { padding: 75px 0; }
-    .hero { min-height: 80vh; }
     
     /* 
-       HERO MOBILE ALIGNMENT FIXES 
-       Moves content strictly to the left edge and creates a gap on the right.
+       HERO MOBILE PERFECT CENTERING
+       Ensures no shifting to the right, equal left/right spacing, 
+       and perfectly centered text vertically and horizontally.
     */
+    .hero { 
+        min-height: 100vh;
+        display: flex;
+        align-items: center; /* Vertical centering */
+        justify-content: center; /* Horizontal centering */
+    }
+    
+    .hero-content {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
     .hero-text-wrapper {
-        text-align: left;
-        max-width: 85%; /* Ensures a healthy gap on the right edge */
-        margin-left: 0;
-        margin-right: auto;
+        text-align: center;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0; /* Reset padding to let container handle bounds */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Horizontally centers all children */
     }
-    .eyebrow { justify-content: flex-start; }
+    
+    .eyebrow { justify-content: center; width: 100%; }
+    
     .hero h1 { 
-        text-align: left;
-        font-size: 42px; /* Set a clean size so letters line up perfectly */
-        line-height: 1.15;
+        text-align: center;
+        font-size: clamp(40px, 10vw, 60px); 
+        line-height: 1.1; 
         white-space: normal;
-        margin-bottom: 20px;
+        margin: 0 auto 20px auto; 
+        width: 100%;
     }
-    .hero-text {
-        text-align: left;
+    
+    .hero-text { 
+        text-align: center;
         font-size: 14px;
-        margin-bottom: 30px;
+        margin: 0 auto 30px auto;
+        max-width: 100%;
     }
-    .hero-buttons { justify-content: flex-start; }
+    
+    .hero-buttons { 
+        justify-content: center; 
+        width: 100%;
+    }
+    
     .trust-row { 
-        justify-content: flex-start; 
+        justify-content: center; 
         gap: 18px; 
         flex-wrap: wrap; 
-        margin-top: 45px; 
+        margin: 45px auto 0 auto; 
+        width: 100%;
     }
     
     .trust-row .line { display: none; }
