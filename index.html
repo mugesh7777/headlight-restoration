@@ -12,7 +12,7 @@
 <!-- ================= HEADER ================= -->
 <header class="site-header">
     <div class="container nav-wrap">
-        <a href="#home" class="brand">
+        <a href="#services" class="brand">
             <span class="brand-mark">
                 <svg viewBox="0 0 48 48">
                     <path d="M8 31c3-9 10-14 21-14 7 0 12 3 14 8-5-2-9-3-14-3-8 0-14 3-18 9z"/>
@@ -27,9 +27,10 @@
             </span>
         </a>
 
+        <!-- Navigation updated to reflect the new section order -->
         <nav class="main-nav" id="mainNav">
-            <a class="active" href="#home">Home</a>
-            <a href="#services">Services</a>
+            <a class="active" href="#services">Services</a>
+            <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#work">Our Work</a>
             <a href="#booking">Contact</a>
@@ -47,54 +48,8 @@
 
 <main>
 
-<!-- ================= HERO ================= -->
-<section class="hero" id="home">
-    <div class="hero-photo" id="heroPhoto"></div>
-    <div class="hero-overlay"></div>
-
-    <div class="container hero-content">
-        <div class="hero-text-wrapper">
-            <div class="eyebrow">
-                <span></span> PROFESSIONAL HEADLIGHT RESTORATION
-            </div>
-            <h1>
-                Clearer <em>Lights.</em><br>
-                Safer Drives.
-            </h1>
-            <p class="hero-text">
-                Professional restoration for faded, yellowed and cloudy headlights — 
-                bringing back clarity and a clean finish to your vehicle.
-            </p>
-            <div class="hero-buttons">
-                <a href="#booking" class="btn primary">
-                    Book a Service <span>↗</span>
-                </a>
-                <a href="#work" class="btn secondary">
-                    View Our Work
-                </a>
-            </div>
-            <div class="trust-row">
-                <div>
-                    <strong>500+</strong>
-                    <small>Restored</small>
-                </div>
-                <div class="line"></div>
-                <div>
-                    <strong>5.0</strong>
-                    <small>Rating</small>
-                </div>
-                <div class="line"></div>
-                <div>
-                    <strong>100%</strong>
-                    <small>Care</small>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ================= SERVICES ================= -->
-<section class="section services" id="services">
+<!-- ================= SERVICES (Moved to First Section) ================= -->
+<section class="section services first-section" id="services">
     <div class="container">
         <div class="section-header">
             <div>
@@ -138,6 +93,52 @@
                     <a href="#booking">Book →</a>
                 </div>
             </article>
+        </div>
+    </div>
+</section>
+
+<!-- ================= HERO (Moved to Second Section) ================= -->
+<section class="hero" id="home">
+    <div class="hero-photo" id="heroPhoto"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+        <div class="hero-text-wrapper">
+            <div class="eyebrow">
+                <span></span> PROFESSIONAL HEADLIGHT RESTORATION
+            </div>
+            <h1>
+                Clearer <em>Lights.</em><br>
+                Safer Drives.
+            </h1>
+            <p class="hero-text">
+                Professional restoration for faded, yellowed and cloudy headlights — 
+                bringing back clarity and a clean finish to your vehicle.
+            </p>
+            <div class="hero-buttons">
+                <a href="#booking" class="btn primary">
+                    Book a Service <span>↗</span>
+                </a>
+                <a href="#work" class="btn secondary">
+                    View Our Work
+                </a>
+            </div>
+            <div class="trust-row">
+                <div>
+                    <strong>500+</strong>
+                    <small>Restored</small>
+                </div>
+                <div class="line"></div>
+                <div>
+                    <strong>5.0</strong>
+                    <small>Rating</small>
+                </div>
+                <div class="line"></div>
+                <div>
+                    <strong>100%</strong>
+                    <small>Care</small>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -262,7 +263,7 @@
                     <div class="contact-icon">✉</div>
                     <div>
                         <small>EMAIL</small>
-                        <strong>wdetailing172@gmail.com</strong>
+                        <strong>your.email@example.com</strong>
                     </div>
                 </div>
 
@@ -332,7 +333,7 @@
 <footer>
     <div class="container footer-grid">
         <div>
-            <a href="#home" class="brand">
+            <a href="#services" class="brand">
                 <span class="brand-mark">
                     <svg viewBox="0 0 48 48">
                         <path d="M8 31c3-9 10-14 21-14 7 0 12 3 14 8-5-2-9-3-14-3-8 0-14 3-18 9z"/>
@@ -352,8 +353,8 @@
         </div>
         <div>
             <h4>Navigate</h4>
-            <a href="#home">Home</a>
             <a href="#services">Services</a>
+            <a href="#home">Home</a>
             <a href="#work">Our Work</a>
             <a href="#booking">Contact</a>
         </div>
